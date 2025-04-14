@@ -20,19 +20,19 @@ public class BasicexampleRestController extends MainResourceController {
 	@Autowired
 	private BasicexampleService basicexampleService;
 	
-	@RequestMapping(value = "/department/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/department/find/by/id/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Department> getDepartmentById(@PathVariable Integer id) {
 		Department department = basicexampleService.getDepartmentById(id);
 		return new ResponseEntity<Department>(department, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/department/{uuid}", method = RequestMethod.GET)
+	@RequestMapping(value = "/department/find/by/uuid/{uuid}", method = RequestMethod.GET)
 	public ResponseEntity<Department> getDepartmentByUuid(@PathVariable String uuid) {
 		Department department = basicexampleService.getDepartmentByUuid(uuid);
 		return new ResponseEntity<Department>(department, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/department", method = RequestMethod.POST)
+	@RequestMapping(value = "/department/save", method = RequestMethod.POST)
 	public ResponseEntity<Department> saveDepartment(@RequestBody Department department) {
 		Department savedDepartment = basicexampleService.saveDepartment(department);
 		return new ResponseEntity<Department>(savedDepartment, HttpStatus.OK);
