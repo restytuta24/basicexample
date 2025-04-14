@@ -1,6 +1,7 @@
 package org.openmrs.module.basicexample;
 
 import org.openmrs.BaseOpenmrsData;
+import org.openmrs.User;
 
 import javax.persistence.*;
 
@@ -19,6 +20,10 @@ public class Department extends BaseOpenmrsData {
 	@Column(name = "location")
 	private String location;
 	
+	@ManyToOne
+	@JoinColumn(name = "owner")
+	private User owner;
+	
 	@Override
 	public Integer getId() {
 		return id;
@@ -36,6 +41,14 @@ public class Department extends BaseOpenmrsData {
 	@Override
 	public void setUuid(String uuid) {
 		super.setUuid(uuid);
+	}
+	
+	public User getOwner() {
+		return owner;
+	}
+	
+	public void setOwner(User owner) {
+		this.owner = owner;
 	}
 	
 	public String getDepartmentName() {
@@ -57,6 +70,6 @@ public class Department extends BaseOpenmrsData {
 	@Override
 	public String toString() {
 		return "Department{" + "id=" + id + ", departmentName='" + departmentName + '\'' + ", location='" + location + '\''
-		        + '}';
+		        + ", owner=" + owner + '}';
 	}
 }
