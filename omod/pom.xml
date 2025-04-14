@@ -13,12 +13,6 @@
 	<name>Basicexample OMOD</name>
 	<description>Omod submodule for Basicexample</description>
 
-	<properties>
-		<openMRSVersion>2.5.0</openMRSVersion>
-		<legacyUiVersion>1.8.4</legacyUiVersion>
-		<webservices.restModuleVersion>2.32.0</webservices.restModuleVersion>
-	</properties>
-
 	<dependencies>
         <dependency>
             <groupId>org.openmrs.module</groupId>
@@ -48,8 +42,12 @@
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>webservices.rest-omod</artifactId>
-			<version>${webservices.restModuleVersion}</version>
 			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.openmrs.module</groupId>
+			<artifactId>legacyui-omod</artifactId>
 		</dependency>
 	</dependencies>
 

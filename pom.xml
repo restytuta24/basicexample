@@ -13,7 +13,7 @@
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Basicexample</name>
-	<description>Basic exampe module</description>
+	<description>Basic example module</description>
 
 	<url>https://wiki.openmrs.org/x/FQ4z</url>
 
@@ -38,6 +38,89 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>4.13.2</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.mockito</groupId>
+				<artifactId>mockito-core</artifactId>
+				<version>2.23.0</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.powermock</groupId>
+				<artifactId>powermock-core</artifactId>
+				<version>2.0.9</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.openmrs.module</groupId>
+				<artifactId>uiframework-api</artifactId>
+				<version>3.6</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.openmrs.module</groupId>
+				<artifactId>legacyui-omod</artifactId>
+				<version>${legacyUiVersion}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok</artifactId>
+				<version>1.18.26</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.openmrs.api</groupId>
+				<artifactId>openmrs-api</artifactId>
+				<version>${openMRSVersion}</version>
+				<type>jar</type>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.openmrs.api</groupId>
+				<artifactId>openmrs-api</artifactId>
+				<version>${openMRSVersion}</version>
+				<type>test-jar</type>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.openmrs.web</groupId>
+				<artifactId>openmrs-web</artifactId>
+				<version>${openMRSVersion}</version>
+				<type>jar</type>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.openmrs.test</groupId>
+				<artifactId>openmrs-test</artifactId>
+				<version>${openMRSVersion}</version>
+				<type>pom</type>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.openmrs.module</groupId>
+				<artifactId>webservices.rest-omod</artifactId>
+				<version>${webservices.restModuleVersion}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>com.sun.mail</groupId>
+				<artifactId>javax.mail</artifactId>
+				<version>1.5.5</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
@@ -199,6 +282,8 @@
 	</pluginRepositories>
 
 	<properties>
-		<openmrsPlatformVersion>1.11.6</openmrsPlatformVersion>
+		<openMRSVersion>2.5.0</openMRSVersion>
+		<legacyUiVersion>1.8.4</legacyUiVersion>
+		<webservices.restModuleVersion>2.40.0</webservices.restModuleVersion>
 	</properties>
 </project>
