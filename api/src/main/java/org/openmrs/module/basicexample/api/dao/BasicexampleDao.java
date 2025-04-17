@@ -48,4 +48,12 @@ public class BasicexampleDao {
 		getSession().saveOrUpdate(department);
 		return department;
 	}
+	
+	public String getPatientSafetyMeasuresByDepartmentId(Integer id) {
+		Department department = getDepartmentById(id);
+		if (department != null) {
+			return department.getPatientSafetyMeasures();
+		}
+		return null;
+	}
 }

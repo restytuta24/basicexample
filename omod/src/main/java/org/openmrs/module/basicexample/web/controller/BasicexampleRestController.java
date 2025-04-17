@@ -34,6 +34,7 @@ public class BasicexampleRestController extends MainResourceController {
 			departmentResponse.setDepartmentName(department.getDepartmentName());
 			departmentResponse.setLocation(department.getLocation());
 			departmentResponse.setDateCreated(department.getDateCreated());
+			departmentResponse.setPatientSafetyMeasures(department.getPatientSafetyMeasures());
 			return new ResponseEntity<DepartmentResponse>(departmentResponse, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<DepartmentResponse>(new DepartmentResponse(), HttpStatus.NO_CONTENT);
@@ -48,6 +49,7 @@ public class BasicexampleRestController extends MainResourceController {
 			departmentResponse.setDepartmentName(department.getDepartmentName());
 			departmentResponse.setLocation(department.getLocation());
 			departmentResponse.setDateCreated(department.getDateCreated());
+			departmentResponse.setPatientSafetyMeasures(department.getPatientSafetyMeasures());
 			return new ResponseEntity<DepartmentResponse>(departmentResponse, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<DepartmentResponse>(new DepartmentResponse(), HttpStatus.NOT_FOUND);
@@ -62,6 +64,7 @@ public class BasicexampleRestController extends MainResourceController {
 			departmentResponse.setDepartmentName(savedDepartment.getDepartmentName());
 			departmentResponse.setLocation(savedDepartment.getLocation());
 			departmentResponse.setDateCreated(savedDepartment.getDateCreated());
+			departmentResponse.setPatientSafetyMeasures(savedDepartment.getPatientSafetyMeasures());
 			return new ResponseEntity<DepartmentResponse>(departmentResponse, HttpStatus.OK);
 		}
 		catch (APIException exception) {
