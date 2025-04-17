@@ -72,16 +72,15 @@
                                  referencedColumnNames="user_id" /> 
 	</changeSet>	
 	<changeSet id="add-patient-safety-measures-2025-04-17-08-31" author="Nakamad" runOnChange="true">
-        <preConditions onFail="MARK_RAN">
-            <not>
-                <columnExists tableName="department" columnName="patient_safety_measures"/>
-            </not>
-        </preConditions>
-        <comment>Adding the patient_safety_measures column to the department table</comment>
-        <addColumn tableName="department">
-            <column name="patient_safety_measures" type="char(255)"/>
-        </addColumn>
-    </changeSet>
-
+	        <preConditions onFail="MARK_RAN">
+	            <not>
+	                <columnExists tableName="department" columnName="patient_safety_measures"/>
+	            </not>
+	        </preConditions>
+	        <comment>Adding the patient_safety_measures column to the department table</comment>
+	        <addColumn tableName="department">
+	            <column name="patient_safety_measures" type="char(255)"/>
+	        </addColumn>
+    	</changeSet>
 </databaseChangeLog>
 
