@@ -49,8 +49,8 @@ public class BasicexampleDao {
 		return department;
 	}
 	
-	public String getPatientSafetyMeasuresByDepartmentId(Integer departmentId) {
-		Department department = getDepartmentById(departmentId);
+	public String getPatientSafetyMeasuresByDepartmentId(Integer id) {
+		Department department = getDepartmentById(id);
 		if (department != null) {
 			return department.getPatientSafetyMeasures();
 		}

@@ -20,12 +20,12 @@ public class Department extends BaseOpenmrsData {
 	@Column(name = "location")
 	private String location;
 	
-	@Column(name = "patient-safety-measures")
-	private String patientSafetyMeasures;
-	
 	@ManyToOne
 	@JoinColumn(name = "owner")
 	private User owner;
+	
+	@Column(name = "patient_safety_measures")
+	private String patientSafetyMeasures;
 	
 	@Override
 	public Integer getId() {
