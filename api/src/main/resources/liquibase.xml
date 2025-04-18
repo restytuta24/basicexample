@@ -69,8 +69,9 @@
 			</column>
 		</createTable>
         <addForeignKeyConstraint constraintName="department_owner_fk" baseTableName="department" baseColumnNames="owner"  referencedTableName="users"
+
                                  referencedColumnNames="user_id" /> 
-	</changeSet>	
+	</changeSet>
 	<changeSet id="add-patient-safety-measures-2025-04-17-08-31" author="Nakamad" runOnChange="true">
 	        <preConditions onFail="MARK_RAN">
 	            <not>
@@ -82,5 +83,14 @@
 	            <column name="patient_safety_measures" type="char(255)"/>
 	        </addColumn>
     	</changeSet>
+
+
+	<changeSet id="add-length_of_stay-to-department" author="Timothy">
+	<addColumn tableName="department">
+		<column name="length_of_stay" type="char(255)">
+			<constraints nullable="false" unique="true"/>
+		</column>
+	</addColumn>
+	</changeSet>
 </databaseChangeLog>
 
