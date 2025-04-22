@@ -36,7 +36,8 @@ public class BasicexampleRestController extends MainResourceController {
 			departmentResponse.setDateCreated(department.getDateCreated());
 			departmentResponse.setPatientSafetyMeasures(department.getPatientSafetyMeasures());
 			departmentResponse.setLengthofStay(department.getLengthofStay());
-
+			departmentResponse.setPatientSafety(department.getPatientSafety());
+			
 			return new ResponseEntity<DepartmentResponse>(departmentResponse, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<DepartmentResponse>(new DepartmentResponse(), HttpStatus.NO_CONTENT);
@@ -53,6 +54,8 @@ public class BasicexampleRestController extends MainResourceController {
 			departmentResponse.setDateCreated(department.getDateCreated());
 			departmentResponse.setPatientSafetyMeasures(department.getPatientSafetyMeasures());
 			departmentResponse.setLengthofStay(department.getLengthofStay());
+			departmentResponse.setPatientSafety(department.getPatientSafety());
+
 			return new ResponseEntity<DepartmentResponse>(departmentResponse, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<DepartmentResponse>(new DepartmentResponse(), HttpStatus.NOT_FOUND);
@@ -69,6 +72,8 @@ public class BasicexampleRestController extends MainResourceController {
 			departmentResponse.setDateCreated(savedDepartment.getDateCreated());
 			departmentResponse.setPatientSafetyMeasures(savedDepartment.getPatientSafetyMeasures());
 			departmentResponse.setLengthofStay(savedDepartment.getLengthofStay());
+			departmentResponse.setPatientSafety(savedDepartment.getPatientSafety());
+
 			return new ResponseEntity<DepartmentResponse>(departmentResponse, HttpStatus.OK);
 		}
 		catch (APIException exception) {

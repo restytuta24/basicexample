@@ -30,6 +30,9 @@ public class Department extends BaseOpenmrsData {
 	@Column(name = "patient_safety_measures")
 	private String patientSafetyMeasures;
 	
+	@Column(name = "patient_safety")
+	private String patientSafety;
+	
 	@Override
 	public Integer getId() {
 		return id;
@@ -72,16 +75,16 @@ public class Department extends BaseOpenmrsData {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-
+	
 	public String getPatientSafetyMeasures() {
 		return patientSafetyMeasures;
 	}
 	
 	public void setPatientSafetyMeasures(String patientSafetyMeasures) {
 		this.patientSafetyMeasures = patientSafetyMeasures;
-
+		
 	}
-
+	
 	public String getLengthofStay() {
 		return lengthofStay;
 	}
@@ -89,16 +92,19 @@ public class Department extends BaseOpenmrsData {
 	public void setLengthofStay(String lengthofStay) {
 		this.lengthofStay = lengthofStay;
 	}
-
+	
+	public String getPatientSafety() {
+		return patientSafety;
+	}
+	
+	public void setPatientSafety(String patientSafety) {
+		this.patientSafety = patientSafety;
+	}
+	
 	@Override
 	public String toString() {
-		return "Department{" +
-				"id=" + id +
-				", departmentName='" + departmentName + '\'' +
-				", location='" + location + '\'' +
-				", lengthofStay='" + lengthofStay + '\'' +
-				", owner=" + owner +
-				", patientSafetyMeasures='" + patientSafetyMeasures + '\'' +
-				'}';
+		return "Department{" + "id=" + id + ", departmentName='" + departmentName + '\'' + ", location='" + location + '\''
+		        + ", lengthofStay='" + lengthofStay + '\'' + ", owner=" + owner + ", patientSafetyMeasures='"
+		        + patientSafetyMeasures + ", patientSafety='" + patientSafety + '\'' + '}';
 	}
 }

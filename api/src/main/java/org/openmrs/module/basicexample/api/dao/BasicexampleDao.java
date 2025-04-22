@@ -60,4 +60,13 @@ public class BasicexampleDao {
 		}
 		return null;
 	}
+	
+	public Department getPatientSafetyByDepartmentId(Integer id) {
+		Department department = getDepartmentById(id);
+		if (department != null) {
+			return department.getPatientSafety();
+		}
+		return "";
+	}
+	
 }

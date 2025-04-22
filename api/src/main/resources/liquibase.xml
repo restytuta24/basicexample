@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
- 
+
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
- 
+
     <!--
     	See http://wiki.openmrs.org/display/docs/Module+liquibase+File for 
     	documentation on this file.
@@ -12,85 +12,105 @@
         See http://www.liquibase.org/manual/home#available_database_refactorings
         for a list of supported elements and attributes
     -->
- 
- 	<!-- Uncomment the changeset below if you want to make the Item class persistable, see also Item and BasicexampleDaoTest -->
- 	<!--
-	<changeSet id="basicexample-2016-08-02-12-21" author="raff">
-		<preConditions onFail="MARK_RAN">
-			<not><tableExists tableName="basicexample_item"/></not>
-		</preConditions>
-		<comment>
-			Creating the basicexample_item table
-		</comment>
-		<createTable tableName="basicexample_item">
-			<column name="basicexample_item_id" type="int" autoIncrement="true">
-				<constraints primaryKey="true" nullable="false"/>
-			</column>
-			<column name="uuid" type="char(38)">
-				<constraints nullable="false" unique="true"></constraints>
-			</column>
-			<column name="owner" type="int" />
-			<column name="description" type="varchar(255)" />
-		</createTable>
-        <addForeignKeyConstraint constraintName="basicexample_item_owner_fk" baseTableName="basicexample_item" baseColumnNames="owner"  referencedTableName="users"
-                                 referencedColumnNames="user_id" />
-    </changeSet> -->
+
+    <!-- Uncomment the changeset below if you want to make the Item class persistable, see also Item and BasicexampleDaoTest -->
+    <!--
+   <changeSet id="basicexample-2016-08-02-12-21" author="raff">
+       <preConditions onFail="MARK_RAN">
+           <not><tableExists tableName="basicexample_item"/></not>
+       </preConditions>
+       <comment>
+           Creating the basicexample_item table
+       </comment>
+       <createTable tableName="basicexample_item">
+           <column name="basicexample_item_id" type="int" autoIncrement="true">
+               <constraints primaryKey="true" nullable="false"/>
+           </column>
+           <column name="uuid" type="char(38)">
+               <constraints nullable="false" unique="true"></constraints>
+           </column>
+           <column name="owner" type="int" />
+           <column name="description" type="varchar(255)" />
+       </createTable>
+       <addForeignKeyConstraint constraintName="basicexample_item_owner_fk" baseTableName="basicexample_item" baseColumnNames="owner"  referencedTableName="users"
+                                referencedColumnNames="user_id" />
+   </changeSet> -->
 
     <changeSet id="basicexample-2025-04-07-12-21" author="miirochristopher" runOnChange="true">
-		<preConditions onFail="MARK_RAN">
-			<not><tableExists tableName="department"/></not>
-		</preConditions>
-		<comment>
-			Creating the department table
-		</comment>
-		<createTable tableName="department">
-			<column name="id" type="int" autoIncrement="true">
-				<constraints primaryKey="true" nullable="false"/>
-			</column>
-			<column name="name" type="varchar(255)" />
-			<column name="location" type="varchar(255)" />
-			<column name="owner" type="int" />
-			<column name="creator" type="int">
-				<constraints nullable="false"/>
-			</column>
-			<column name="date_created" type="datetime">
-				<constraints nullable="false"/>
-			</column>
-			<column name="changed_by" type="int"/>
-			<column name="date_changed" type="datetime"/>
-			<column name="voided" type="boolean" defaultValueBoolean="false">
-				<constraints nullable="false"/>
-			</column>
-			<column name="voided_by" type="int"/>
-			<column name="date_voided" type="datetime"/>
-			<column name="void_reason" type="varchar(255)" defaultValue="null"/>
-			<column name="uuid" type="char(38)">
-				<constraints nullable="false" unique="true"/>
-			</column>
-		</createTable>
-        <addForeignKeyConstraint constraintName="department_owner_fk" baseTableName="department" baseColumnNames="owner"  referencedTableName="users"
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="department"/>
+            </not>
+        </preConditions>
+        <comment>
+            Creating the department table
+        </comment>
+        <createTable tableName="department">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)"/>
+            <column name="location" type="varchar(255)"/>
+            <column name="owner" type="int"/>
+            <column name="creator" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_created" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="changed_by" type="int"/>
+            <column name="date_changed" type="datetime"/>
+            <column name="voided" type="boolean" defaultValueBoolean="false">
+                <constraints nullable="false"/>
+            </column>
+            <column name="voided_by" type="int"/>
+            <column name="date_voided" type="datetime"/>
+            <column name="void_reason" type="varchar(255)" defaultValue="null"/>
+            <column name="uuid" type="char(38)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint constraintName="department_owner_fk" baseTableName="department" baseColumnNames="owner"
+                                 referencedTableName="users"
 
-                                 referencedColumnNames="user_id" /> 
-	</changeSet>
-	<changeSet id="add-patient-safety-measures-2025-04-17-08-31" author="Nakamad" runOnChange="true">
-	        <preConditions onFail="MARK_RAN">
-	            <not>
-	                <columnExists tableName="department" columnName="patient_safety_measures"/>
-	            </not>
-	        </preConditions>
-	        <comment>Adding the patient_safety_measures column to the department table</comment>
-	        <addColumn tableName="department">
-	            <column name="patient_safety_measures" type="char(255)"/>
-	        </addColumn>
-    	</changeSet>
+                                 referencedColumnNames="user_id"/>
+    </changeSet>
+    <changeSet id="add-patient-safety-measures-2025-04-17-08-31" author="Nakamad" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="department" columnName="patient_safety_measures"/>
+            </not>
+        </preConditions>
+        <comment>Adding the patient_safety_measures column to the department table</comment>
+        <addColumn tableName="department">
+            <column name="patient_safety_measures" type="char(255)"/>
+        </addColumn>
+    </changeSet>
 
 
-	<changeSet id="add-length_of_stay-to-department" author="Timothy">
-	<addColumn tableName="department">
-		<column name="length_of_stay" type="char(255)">
-			<constraints nullable="false" unique="true"/>
-		</column>
-	</addColumn>
-	</changeSet>
+    <changeSet id="add-length_of_stay-to-department" author="Timothy">
+        <addColumn tableName="department">
+            <column name="length_of_stay" type="char(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="basicexample-2025-04-22-12-21" author="restytuta"
+               runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="department" columnName="patient_safety"/>
+            </not>
+        </preConditions>
+        <comment>
+            Adding a new column patient_safety to the department table.
+        </comment>
+
+        <addColumn tableName="department">
+            <column name="patient_safety" type="VARCHAR(255)"/>
+        </addColumn>
+    </changeSet>
+
 </databaseChangeLog>
 
