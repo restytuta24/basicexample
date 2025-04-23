@@ -76,4 +76,14 @@ public class BasicexampleServiceImpl extends BaseOpenmrsService implements Basic
 	public String getPatientSafetyMeasuresByDepartmentId(Integer id) {
 		return dao.getPatientSafetyMeasuresByDepartmentId(id);
 	}
+	
+	@Override
+	public String getPatientSafetyByDepartmentId(Integer id) throws APIException {
+		Department department = dao.getDepartmentById(id);
+		if (department != null) {
+			return department.getPatientSafety();
+		} else {
+			return "";
+		}
+	}
 }
