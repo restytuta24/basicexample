@@ -55,7 +55,7 @@ public class BasicexampleRestController extends MainResourceController {
 			departmentResponse.setPatientSafetyMeasures(department.getPatientSafetyMeasures());
 			departmentResponse.setLengthofStay(department.getLengthofStay());
 			departmentResponse.setPatientSafety(department.getPatientSafety());
-
+			
 			return new ResponseEntity<DepartmentResponse>(departmentResponse, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<DepartmentResponse>(new DepartmentResponse(), HttpStatus.NOT_FOUND);
@@ -73,7 +73,7 @@ public class BasicexampleRestController extends MainResourceController {
 			departmentResponse.setPatientSafetyMeasures(savedDepartment.getPatientSafetyMeasures());
 			departmentResponse.setLengthofStay(savedDepartment.getLengthofStay());
 			departmentResponse.setPatientSafety(savedDepartment.getPatientSafety());
-
+			
 			return new ResponseEntity<DepartmentResponse>(departmentResponse, HttpStatus.OK);
 		}
 		catch (APIException exception) {
