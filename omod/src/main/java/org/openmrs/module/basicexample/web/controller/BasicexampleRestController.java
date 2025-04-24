@@ -80,4 +80,14 @@ public class BasicexampleRestController extends MainResourceController {
 			throw new APIException(exception.getMessage());
 		}
 	}
+	
+	@RequestMapping(value = "/department/safety-measures/{id}", method = RequestMethod.GET)
+    public ResponseEntity<String> getPatientSafetyMeasuresByDepartmentId(@PathVariable Integer id) {
+		String patientSafetyMeasures = basicexampleService.getPatientSafetyMeasuresByDepartmentId(id);
+		if (patientSafetyMeasures != null) {
+			return new ResponseEntity<>(patientSafetyMeasures, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
 }
