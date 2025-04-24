@@ -90,4 +90,14 @@ public class BasicexampleRestController extends MainResourceController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
+	
+	@RequestMapping(value = "/find/patient/safety/by/id/{id}", method = RequestMethod.GET)
+	public ResponseEntity<String> getPatientSafetyByDepartmentId(@PathVariable Integer id) {
+		String patientSafety = basicexampleService.getPatientSafetyByDepartmentId(id);
+		if (patientSafety != null) {
+			return new ResponseEntity<String>(patientSafety, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<String>("Error retrieving patient safety for department ID: ", HttpStatus.NO_CONTENT);
+		}
+	}
 }
