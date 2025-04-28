@@ -91,6 +91,16 @@ public class BasicexampleRestController extends MainResourceController {
 		}
 	}
 	
+	@RequestMapping(value = "/find/length/of/stay/by/id{id}", method = RequestMethod.GET)
+	public ResponseEntity<String> getLengthofStayByDepartmentId(@PathVariable Integer id) {
+		String lengthofstay = basicexampleService.getLengthofStayById(id);
+		if (lengthofstay != null) {
+			return new ResponseEntity<String>(lengthofstay, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
+		}
+	}
+	
 	@RequestMapping(value = "/find/patient/safety/by/id/{id}", method = RequestMethod.GET)
 	public ResponseEntity<String> getPatientSafetyByDepartmentId(@PathVariable Integer id) {
 		String patientSafety = basicexampleService.getPatientSafetyByDepartmentId(id);
