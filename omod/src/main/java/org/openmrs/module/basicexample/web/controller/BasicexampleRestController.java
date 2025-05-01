@@ -1,7 +1,5 @@
 package org.openmrs.module.basicexample.web.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import org.openmrs.api.APIException;
 import org.openmrs.module.basicexample.Department;
 import org.openmrs.module.basicexample.api.BasicexampleService;
@@ -24,8 +22,6 @@ public class BasicexampleRestController extends MainResourceController {
 	@Autowired
 	private BasicexampleService basicexampleService;
 	
-	ObjectMapper mapper = new ObjectMapper().configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
-	
 	@RequestMapping(value = "/department/find/by/id/{id}", method = RequestMethod.GET)
 	public ResponseEntity<DepartmentResponse> getDepartmentById(@PathVariable Integer id) {
 		Department department = basicexampleService.getDepartmentById(id);
@@ -35,12 +31,12 @@ public class BasicexampleRestController extends MainResourceController {
 			departmentResponse.setLocation(department.getLocation());
 			departmentResponse.setDateCreated(department.getDateCreated());
 			departmentResponse.setPatientSafetyMeasures(department.getPatientSafetyMeasures());
-			departmentResponse.setLengthofStay(department.getLengthofStay());
+			departmentResponse.setLengthofStay(department.getLengthOfStay());
 			departmentResponse.setPatientSafety(department.getPatientSafety());
 			
-			return new ResponseEntity<DepartmentResponse>(departmentResponse, HttpStatus.OK);
+			return new ResponseEntity<>(departmentResponse, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<DepartmentResponse>(new DepartmentResponse(), HttpStatus.NO_CONTENT);
+			return new ResponseEntity<>(new DepartmentResponse(), HttpStatus.NO_CONTENT);
 		}
 	}
 	
@@ -53,12 +49,12 @@ public class BasicexampleRestController extends MainResourceController {
 			departmentResponse.setLocation(department.getLocation());
 			departmentResponse.setDateCreated(department.getDateCreated());
 			departmentResponse.setPatientSafetyMeasures(department.getPatientSafetyMeasures());
-			departmentResponse.setLengthofStay(department.getLengthofStay());
+			departmentResponse.setLengthofStay(department.getLengthOfStay());
 			departmentResponse.setPatientSafety(department.getPatientSafety());
 			
-			return new ResponseEntity<DepartmentResponse>(departmentResponse, HttpStatus.OK);
+			return new ResponseEntity<>(departmentResponse, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<DepartmentResponse>(new DepartmentResponse(), HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(new DepartmentResponse(), HttpStatus.NOT_FOUND);
 		}
 	}
 	
@@ -71,10 +67,10 @@ public class BasicexampleRestController extends MainResourceController {
 			departmentResponse.setLocation(savedDepartment.getLocation());
 			departmentResponse.setDateCreated(savedDepartment.getDateCreated());
 			departmentResponse.setPatientSafetyMeasures(savedDepartment.getPatientSafetyMeasures());
-			departmentResponse.setLengthofStay(savedDepartment.getLengthofStay());
+			departmentResponse.setLengthofStay(savedDepartment.getLengthOfStay());
 			departmentResponse.setPatientSafety(savedDepartment.getPatientSafety());
 			
-			return new ResponseEntity<DepartmentResponse>(departmentResponse, HttpStatus.OK);
+			return new ResponseEntity<>(departmentResponse, HttpStatus.OK);
 		}
 		catch (APIException exception) {
 			throw new APIException(exception.getMessage());
@@ -92,12 +88,12 @@ public class BasicexampleRestController extends MainResourceController {
 	}
 	
 	@RequestMapping(value = "/find/length/of/stay/by/id{id}", method = RequestMethod.GET)
-	public ResponseEntity<String> getLengthofStayByDepartmentId(@PathVariable Integer id) {
-		String lengthofstay = basicexampleService.getLengthofStayById(id);
-		if (lengthofstay != null) {
-			return new ResponseEntity<String>(lengthofstay, HttpStatus.OK);
+	public ResponseEntity<String> getLengthOfStayByDepartmentId(@PathVariable Integer id) {
+		String lengthOfStay = basicexampleService.getLengthOfStayByDepartmentId(id);
+		if (lengthOfStay != null) {
+			return new ResponseEntity<>(lengthOfStay, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
 	
@@ -105,9 +101,21 @@ public class BasicexampleRestController extends MainResourceController {
 	public ResponseEntity<String> getPatientSafetyByDepartmentId(@PathVariable Integer id) {
 		String patientSafety = basicexampleService.getPatientSafetyByDepartmentId(id);
 		if (patientSafety != null) {
-			return new ResponseEntity<String>(patientSafety, HttpStatus.OK);
+			return new ResponseEntity<>(patientSafety, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<String>("Error retrieving patient safety for department ID: ", HttpStatus.NO_CONTENT);
+			return new ResponseEntity<>("Error retrieving patient safety for department ID: ", HttpStatus.NO_CONTENT);
+		}
+	}
+	
+	@RequestMapping(value = "/update/patients/safety/by/id/{id}", method = RequestMethod.POST)
+	public ResponseEntity<String> updatePatientSafetyByDepartmentId(@PathVariable Integer id,
+	        @RequestBody String newPatientSafety) {
+		String patientSafety = basicexampleService.updatePatientSafetyByDepartmentId(id, newPatientSafety);
+		
+		if (patientSafety.equals("Patient safety updated successfully.")) {
+			return ResponseEntity.ok(patientSafety);
+		} else {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(patientSafety);
 		}
 	}
 }

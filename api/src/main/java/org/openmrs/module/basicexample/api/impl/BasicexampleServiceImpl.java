@@ -63,8 +63,13 @@ public class BasicexampleServiceImpl extends BaseOpenmrsService implements Basic
 	}
 	
 	@Override
-	public Department getLengthofStayById(Integer id) throws APIException {
-		return dao.getLengthofStayById(id);
+	public String getLengthOfStayByDepartmentId(Integer id) throws APIException {
+		Department department = dao.getDepartmentById(id);
+		if (department != null) {
+			return department.getLengthOfStay();
+		} else {
+			return "";
+		}
 	}
 	
 	@Override
@@ -85,5 +90,10 @@ public class BasicexampleServiceImpl extends BaseOpenmrsService implements Basic
 		} else {
 			return "";
 		}
+	}
+	
+	@Override
+	public String updatePatientSafetyByDepartmentId(Integer id, String newPatientSafety) throws APIException {
+		return dao.updatePatientSafetyByDepartmentId(id, newPatientSafety);
 	}
 }
