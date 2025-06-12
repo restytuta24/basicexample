@@ -13,11 +13,14 @@ import org.junit.Test;
 import org.junit.Ignore;
 import org.openmrs.api.UserService;
 import org.openmrs.api.context.Context;
+import org.openmrs.module.basicexample.Department;
 import org.openmrs.module.basicexample.Item;
 import org.openmrs.test.BaseModuleContextSensitiveTest;
 import org.springframework.beans.factory.annotation.Autowired;
-import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.*;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.hasProperty;
+import static org.hamcrest.Matchers.is;
 
 /**
  * It is an integration test (extends BaseModuleContextSensitiveTest), which verifies DAO methods
@@ -54,5 +57,29 @@ public class BasicexampleDaoTest extends BaseModuleContextSensitiveTest {
 		assertThat(savedItem, hasProperty("uuid", is(item.getUuid())));
 		assertThat(savedItem, hasProperty("owner", is(item.getOwner())));
 		assertThat(savedItem, hasProperty("description", is(item.getDescription())));
+	}
+	
+	@Test
+	public void saveDepartment_shouldSaveDepartmentInTheDB() {
+		
+		Department department = new Department();
+		department.setDepartmentName("A&E");
+		department.setOwner(Context.getAuthenticatedUser());
+		department.setLocation("Mulago");
+		department.setPatientSafety("Triage");
+		department.setPatientSafetyMeasures("wheel Chair accessible");
+		department.setLengthOfStay("1 hour");
+		
+		dao.saveDepartment(department);
+		
+		Context.flushSession();
+		Context.clearSession();
+		
+		Department savedDepartment = dao.getDepartmentById(department.getId());
+		
+		// assertNotNull(savedDepartment);
+		assertThat(savedDepartment, hasProperty("uuid", is(department.getUuid())));
+		assertThat(savedDepartment, hasProperty("location", is(department.getLocation())));
+		assertThat(savedDepartment, hasProperty("patientSafety", is("Triage")));
 	}
 }
